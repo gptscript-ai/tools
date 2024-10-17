@@ -1,0 +1,34 @@
+---
+Name: Images
+Metadata: bundle: true
+Description: Tools for analyzing and generating images 
+Share Tools: Analyze Images, Generate Images
+
+---
+Name: Analyze Images
+Credential: github.com/gptscript-ai/credentials/model-provider
+Description: Analyze images using a given prompt and return relevant information about the images
+Param: prompt: A prompt to analyze the images with (required)
+Param: images: Comma delimited list of image URIs to analyze. Valid URIs start with "http://" and "https://" for remote images, and "file://" for paths to local image files. Only supports jpeg and png. Commas in file paths should be escaped with a backslash.
+Param: maxTokens: The maximum number of tokens the result of the analysis should contain (optional, default: 2048)
+
+#!/usr/bin/env npm --silent --prefix ${GPTSCRIPT_TOOL_DIR} run tool -- analyzeImages
+
+---
+Name: Generate Images
+Credential: github.com/gptscript-ai/credentials/model-provider
+Description: Generates images based on the specified parameters and returns a list of URLs to the generated images.
+Param: prompt: Text describing the images to generate (required)
+Param: size: Dimensions of the images to generate in "<width>x<height>" format (optional, default: "1024x1024")
+Param: quality: Quality of the generated image. Allowed values are "standard" or "hd" (optional, default: "standard")
+Param: quantity: Quantity of distinct images to generate (optional, default: 1) 
+
+#!/usr/bin/env npm --silent --prefix ${GPTSCRIPT_TOOL_DIR} run tool -- generateImages
+
+---
+!metadata:*:category
+Images
+
+---
+!metadata:*:icon
+https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2/assets/duotone/image-duotone.svg
