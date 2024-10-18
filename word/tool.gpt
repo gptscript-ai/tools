@@ -1,0 +1,43 @@
+---
+Name: Word 
+Description: Tools for interacting with Microsoft Word documents 
+Metadata: bundle: true
+Share Tools: List Docs, Get Doc 
+
+---
+Name: List Docs
+Description: List all word documents available to the user
+Share Context: Word Context
+Credential: ./credential
+
+#!${GPTSCRIPT_TOOL_DIR}/bin/gptscript-go-tool listDocs
+
+---
+Name: Get Doc 
+Description: Gets the contents of a word document
+Share Context: Word Context
+Credential: ./credential
+Share Tools: List Docs 
+Param: doc_id: ID word document to get
+
+#!${GPTSCRIPT_TOOL_DIR}/bin/gptscript-go-tool getWorksheetData
+
+---
+Name: Word Context
+Type: context
+
+#!sys.echo
+
+## Instructions for using Word tools
+
+Do not output doc IDs because they are not helpful for the user.
+
+## End of instructions for using Word tools
+
+---
+!metadata:*:category
+Word
+
+---
+!metadata:*:icon
+https://cdn.jsdelivr.net/npm/@phosphor-icons/core@2/assets/duotone/microsoft-word-logo-duotone.svg
